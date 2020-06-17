@@ -1,0 +1,3 @@
+vagrant up --provider=docker
+echo Starting...
+pause
