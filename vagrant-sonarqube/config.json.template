@@ -1,0 +1,42 @@
+{
+    "servers": {
+        "devcircus-sonarqube-server": {
+            "enabled": true,
+            "guest-hostname": "devcircus-sonarqube-server.vm.server",
+            "group": "DevCircus Infra Servers",
+            "box": "ubuntu/bionic64",
+            "timezone": "Europe/Madrid",
+            "cpus": 1,
+            "memory": 4096,
+            "ssh-prv-key": "~/.ssh/id_rsa",
+            "ssh-pub-key": "~/.ssh/id_rsa.pub",
+            "network": {
+              "interfaces": [
+                {
+                  "network-type": "private",
+                  "if-adapter": "enp0s8",
+                  "if-inet-type": "static",
+                  "if-address": "10.0.13.21",
+                  "if-netmask": "255.255.0.0"
+                },
+                {
+                  "network-type": "public",
+                  "if-adapter": "enp0s3",
+                  "if-inet-type": "static",
+                  "if-address": "192.168.88.21",
+                  "if-netmask": "255.255.88.0",
+                  "bridge-adapter": "enp1s0"
+                }
+              ]
+            },
+            "scripts": [
+                "bootstrap.sh",
+                "ssh.sh",
+								"java.sh",
+								"postgresql.sh",
+								"sonarqube.sh",
+								"nginx.sh"
+            ]
+        }
+    }
+}

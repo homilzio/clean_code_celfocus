@@ -1,0 +1,108 @@
+#! /bin/bash
+### BEGIN INIT INFO
+# Provides: vagrant-sonarqube
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Vagrant Sonarqube
+# Description: This file starts and stops a SonarQube server on a Vagrant machine
+#
+### END INIT INFO
+#
+# Author: Adrian Novegil <adrian.novegil@gmail.com>
+#
+
+set -e
+
+PROG=vagrant-sonarqube
+RETVAL=0
+VAGRANT_USR=adrian
+VAGRANTBOX_PATH=/opt/vagrant-runtime/vagrant-sonarqube
+
+# Start the service
+#
+start() {
+  echo -n "Starting $PROG: "
+  pushd $VAGRANTBOX_PATH
+  sudo -u $VAGRANT_USR vagrant up
+  popd
+  RETVAL=$?
+    if [ $RETVAL = 0 ]; then
+      echo "$PROG started"
+    else
+      echo "$PROG failed to start"
+    fi
+  echo
+  return $RETVAL
+}
+
+# Stop the service
+#
+stop() {
+  echo -n "Stoping $PROG: "
+  pushd $VAGRANTBOX_PATH
+  sudo -u $VAGRANT_USR vagrant halt
+  popd
+  RETVAL=$?
+    if [ $RETVAL = 0 ]; then
+      echo "$PROG stoped"
+    else
+      echo "$PROG failed to stop"
+    fi
+  echo
+  return $RETVAL
+}
+
+#
+# Show the status
+status() {
+  echo -n "Showing the status of $PROG: "
+  pushd $VAGRANTBOX_PATH
+  sudo -u $VAGRANT_USR vagrant status
+  popd
+  RETVAL=$?
+    if [ $RETVAL = 0 ]; then
+      echo "$PROG all ok"
+    else
+      echo "$PROG failed to showing the status"
+    fi
+  echo
+  return $RETVAL
+}
+
+# Restart the service
+#
+restart() {
+  echo -n "Restarting $PROG: "
+  pushd $VAGRANTBOX_PATH
+  sudo -u $VAGRANT_USR vagrant reload
+  popd
+  RETVAL=$?
+    if [ $RETVAL = 0 ]; then
+      echo "$PROG restarted"
+    else
+      echo "$PROG failed to restart"
+    fi
+  echo
+  return $RETVAL
+}
+
+case "$1" in
+ start)
+   start
+   ;;
+ stop)
+   stop
+   ;;
+ status)
+   status
+   ;;
+ restart)
+   restart
+   ;;
+ *)
+   echo "Usage: vagrant-sonarqube {start|stop|status|restart}" >&2
+   exit 3
+   ;;
+esac

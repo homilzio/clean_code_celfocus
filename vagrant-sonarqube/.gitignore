@@ -1,0 +1,8 @@
+# Ignore the vagrant folder.
+.vagrant
+
+# Ignore the config file
+config.json
+
+# Ignore the virtual machine log file.
+*.log

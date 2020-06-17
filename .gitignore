@@ -1,2 +1,11 @@
 /vagrant/.vagrant/machines/default/virtualbox/synced_folders
 *.jar
+
+.idea
+target
+*.iml
+*.ipr
+*.iws
+logs
+sessions
+spring-boot-spring-loaded-java8-example-master
