@@ -2,12 +2,12 @@
     "servers": {
         "devcircus-sonarqube-server": {
             "enabled": true,
-            "guest-hostname": "devcircus-sonarqube-server.vm.server",
-            "group": "DevCircus Infra Servers",
+            "guest-hostname": "clean_code_training",
+            "group": "CCC",
             "box": "ubuntu/bionic64",
-            "timezone": "Europe/Madrid",
+            "timezone": "Europe/Lisbon",
             "cpus": 1,
-            "memory": 4096,
+            "memory": 2096,
             "ssh-prv-key": "~/.ssh/id_rsa",
             "ssh-pub-key": "~/.ssh/id_rsa.pub",
             "network": {

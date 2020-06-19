@@ -1,0 +1,16 @@
+*.git
+*.idea
+*.classpath
+*.factorypath
+*.iml
+*.log
+*.project
+.DS_Store
+.brackets.json
+.idea/
+.metadata/
+.recommenders/
+.settings/
+/tooling/digital.runner/container/*/data/*
+/tooling/digital.runner/launcher
+target/*
