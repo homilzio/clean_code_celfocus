@@ -33,6 +33,7 @@ public class RentCarApp {
         } catch (Exception e) {
             //TODO Logg exception properly
             e.printStackTrace();
+			//TODO write the exception to the new created log file ccc.log
         }
 
     }
