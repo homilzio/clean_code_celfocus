@@ -6,8 +6,11 @@ import lombok.Data;
 import lombok.Getter;
 import vehicles.Car;
 import vehicles.Vehicle;
-
 import java.util.List;
+
+/**
+ * Client Class, this has only client related info and fields
+ */
 @Data
 @Getter
 @Builder
