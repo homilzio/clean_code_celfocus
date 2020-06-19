@@ -37,7 +37,7 @@ public class RentCarApp {
 
     }
 
-    private <T> Client createNewClientErrorTest(String alberto,  int age, boolean canBuyACar, List<T> accountList) throws Exception {
+    private static <T> Client createNewClientErrorTest(String alberto, int age, boolean canBuyACar, List<T> accountList) throws Exception {
         // TODO implement method body -> validate if name is acceptable and check the minimum age to buy a car
         throw RentCarAppError.METHOD_NOT_IMPLEMENTED;
     }
