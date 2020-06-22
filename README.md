@@ -7,6 +7,8 @@ Don't forget to handle / throw exceptions on the right way.
 
 You will need to install:
 
-JDK 8
-Maven
+JDK 8 - https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
+
+Maven - https://maven.apache.org/download.cgi
+
 Intellij - https://www.jetbrains.com/idea/download/download-thanks.html?platform=windows&code=IIC
