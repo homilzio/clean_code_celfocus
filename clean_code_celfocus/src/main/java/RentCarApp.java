@@ -4,12 +4,14 @@ import error.RentCarAppError;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import person.CarSalesman;
 import person.Client;
 import person.Person;
 import person.Salesman;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -23,7 +25,15 @@ public class RentCarApp {
         printWelcomeMessage();
         //TODO add relevant type
         createNewUser();
-        Salesman newSalesman = createNewSalesman();
+
+        Salesman instanceSalesMan = new CarSalesman();
+
+        Salesman newSalesman = instanceSalesMan.createNewSalesman();
+
+        int newSalesmanAge = Objects.nonNull(newSalesman)? newSalesman.getAge() : 0;
+        System.out.println(newSalesmanAge);
+
+        Person minorPersonWithName = new Client("Black", "Joana", 17);
 
         // TODO give proper names and validate
            /* Person p = new Client();
@@ -33,7 +43,7 @@ public class RentCarApp {
         // TODO install Lombok plugin
 
         try {
-            Client alberto = createNewClientErrorTest("Alberto", 18, true, Arrays.asList(new AccountImpl(), new AccountImpl()));
+           // Client alberto = createNewClientErrorTest("Alberto", 18, true, Arrays.asList(new AccountImpl(), new AccountImpl()));
         } catch (Exception e) {
             //TODO Logg exception properly
             e.printStackTrace();
