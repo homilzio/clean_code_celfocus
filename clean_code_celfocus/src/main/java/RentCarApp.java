@@ -11,6 +11,10 @@ import person.Salesman;
 import java.util.Arrays;
 import java.util.List;
 
+
+/**
+ * TODO This is the main app, we can remove the static methods moving then the the correct classes
+ */
 public class RentCarApp {
     private static final Logger LOGGER = LoggerFactory.getLogger(RentCarApp.class);
     public static void main(String [] args){

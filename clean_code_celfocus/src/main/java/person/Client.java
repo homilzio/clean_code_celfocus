@@ -16,6 +16,9 @@ import java.util.List;
 @Builder
 public class Client implements Person{
 
+    /*
+        TODO implement the method buy favourite car, that accessing a list salesmen find is car and try to buy it
+     */
     protected List<Vehicle> allVehicles;
     protected List<Account> allAccounts;
     protected List<String> keys;
