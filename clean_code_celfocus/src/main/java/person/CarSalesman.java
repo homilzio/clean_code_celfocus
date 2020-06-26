@@ -1,6 +1,5 @@
 package person;
 
-import vehicles.Car;
 import vehicles.Vehicle;
 
 import java.util.List;
@@ -43,7 +42,7 @@ public class CarSalesman extends Salesman {
     }
 
     @Override
-    public boolean canBuyACar(Car car) {
+    public boolean canBuyACar(Vehicle car) {
         return false;
     }
 }

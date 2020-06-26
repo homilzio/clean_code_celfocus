@@ -8,8 +8,12 @@ import person.CarSalesman;
 import person.Client;
 import person.Person;
 import person.Salesman;
+import vehicles.Car;
+import vehicles.Ford;
+import vehicles.Vehicle;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +28,8 @@ public class RentCarApp {
         LOGGER.info("App started!!");
         printWelcomeMessage();
         //TODO add relevant type
-        createNewUser();
+
+
 
         Salesman instanceSalesMan = new CarSalesman();
 
@@ -34,6 +39,20 @@ public class RentCarApp {
         System.out.println(newSalesmanAge);
 
         Person minorPersonWithName = new Client("Black", "Joana", 17);
+        Person majorPersonWithName = new Client("Black", "Maria", 18);
+
+        Vehicle ford = new Ford("Blue");
+        Vehicle fordBlack = new Ford("Black");
+        Vehicle renault = new Ford("Pink", 4);
+
+        List<Vehicle> carList = new LinkedList<Vehicle>(Arrays.asList(ford, renault));
+
+        boolean cannotBuyACar = minorPersonWithName.canBuyACar(ford);
+        boolean canBuyACar = majorPersonWithName.canBuyACar(fordBlack);
+
+        LOGGER.info("Can {} client buy a car? - {}", minorPersonWithName.getName(), cannotBuyACar);
+        LOGGER.info("Can {} client buy a car? - {}", majorPersonWithName.getName(), canBuyACar);
+
 
         // TODO give proper names and validate
            /* Person p = new Client();

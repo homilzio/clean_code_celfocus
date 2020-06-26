@@ -2,6 +2,8 @@ package vehicles;
 
 import account.Account;
 import buydetails.BuyInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import person.Client;
 
 import java.math.BigDecimal;
@@ -12,6 +14,8 @@ public abstract class  Car implements  Vehicle{
 
     public static final String BLACK = "Black";
     public static final int ISMAJOR = 18;
+    public static final String WHITE_COLOR = "WHITE";
+    public static final Logger LOGGER = LoggerFactory.getLogger(Car.class);
 
     private final String WHITE;
     private String id;
@@ -32,8 +36,8 @@ public abstract class  Car implements  Vehicle{
         // TODO validate what can be done better
         this.id = "Car-" + Math.random();
         this.tire = new Tire();
-        this.color = BLACK;
-        this.WHITE = color;
+        this.WHITE = WHITE_COLOR;
+        this.color = color;
         this.vehicleFinance = new VehicleFinance();
     }
 
@@ -41,8 +45,8 @@ public abstract class  Car implements  Vehicle{
         // TODO validate what can be done better
         this.id = "Car-" + Math.random();
         this.tire = new Tire();
-        this.color = BLACK;
-        this.WHITE = color;
+        this.color = color;
+        this.WHITE = WHITE_COLOR;
     }
 
     public boolean rent(Client client) {
@@ -120,10 +124,26 @@ public abstract class  Car implements  Vehicle{
         this.color = color;
     }
 
+    @Override
     public boolean canBuy(Client client) {
-        return client != null &&
-                client.getAge() > ISMAJOR &&
-                this.color.equals(client.getColor());
+        boolean isNull = client == null;
+        boolean isMajor = !isNull && (client.getAge() >= ISMAJOR);
+        boolean equalsColor = !isNull && this.color.equals(client.getColor());
+
+        if(isNull){
+            LOGGER.warn("canBuy::Client is null");
+            return false; // TODO
+        }
+
+        if(!isMajor){
+            LOGGER.warn("canBuy::Client whith name {} is not major", client.getName());
+        }
+
+        if(!equalsColor){
+            LOGGER.warn("canBuy::Client with name {}, is expecting color: {} and this car color is: {}", client.getName(), client.getColor(), this.color);
+        }
+
+        return !isNull && isMajor && equalsColor;
     }
 
 }

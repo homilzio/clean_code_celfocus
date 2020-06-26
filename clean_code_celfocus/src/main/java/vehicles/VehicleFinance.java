@@ -24,11 +24,16 @@ public class VehicleFinance implements Vehicle{
     }
 
     @Override
+    public boolean canBuy(Client client) {
+        return false;
+    }
+
+    @Override
     public void cleanVehicle() {
 
     }
 
-    public BuyInfo buyACar(Client client, Car car) {
+    public BuyInfo buyACar(Client client, Vehicle car) {
 
         // TODO implement with proper validations
         return new BuyInfoModel();

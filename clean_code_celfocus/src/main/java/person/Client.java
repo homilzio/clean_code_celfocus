@@ -2,14 +2,16 @@ package person;
 
 import account.Account;
 import buydetails.BuyInfo;
-import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
+import org.springframework.util.CollectionUtils;
 import vehicles.Car;
 import vehicles.Vehicle;
 import vehicles.VehicleFinance;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Client Class, this has only client related info and fields
@@ -46,10 +48,10 @@ public class Client implements Person{
     // TODO change this to proper class -> BuyOptions
 
 
-    private BuyInfo buyFavoriteCarDirty(List<Car> carList ) throws Exception {
+    private BuyInfo buyFavoriteCarDirty(List<Vehicle> carList ) throws Exception {
         // dirty version
         BuyInfo buyInfo = null;
-        for (Car car : carList) {
+        for (Vehicle car : carList) { // possible NPE
             if(car.canBuy(this)){
                 buyInfo = this.vehicleFinance.buyACar(this, car);
             }
@@ -60,7 +62,17 @@ public class Client implements Person{
     private BuyInfo buyFavoriteCarClean(List<Car> carList ) throws Exception {
         // clean version
         BuyInfo buyInfo = null;
-        // TODO implement it in a clean solution
+
+        if(!CollectionUtils.isEmpty(carList)){
+            Optional<Car> anyCar = carList.stream()
+                    .filter(Objects::nonNull) // car -> car !=null
+                    .filter(car -> carColor.equals(car.getColor()))
+                    .findAny();
+
+            if(anyCar.isPresent()){
+                buyInfo = this.vehicleFinance.buyACar(this, anyCar.get());
+            }
+        }
         return buyInfo;
     }
 
@@ -96,7 +108,7 @@ public class Client implements Person{
     }
 
     @Override
-    public boolean canBuyACar(Car car) {
+    public boolean canBuyACar(Vehicle car) {
         return car.canBuy(this);
     }
 
