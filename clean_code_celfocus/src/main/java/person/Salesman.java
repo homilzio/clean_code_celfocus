@@ -14,7 +14,7 @@ public abstract class Salesman implements  Person {
      */
 
     /*
-        TODO implement the method repair a car that receiving a list of cars, will only repair a car that are still under warranty.
+        TODO implement the method repair cars that receiving a list of cars, will only repair the cars that are still under warranty.
      */
 
 }
