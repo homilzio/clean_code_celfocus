@@ -3,6 +3,9 @@ import org.slf4j.LoggerFactory;
 import person.Client;
 import person.Salesman;
 
+/**
+ * TODO This is the main app, we can remove the static methods moving then the the correct classes
+ */
 public class RentCarApp {
     private static final Logger LOGGER = LoggerFactory.getLogger(RentCarApp.class);
     public static void main(String [] args){
