@@ -1,11 +1,19 @@
 package person;
 
 import account.Account;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
 import vehicles.Car;
 import vehicles.Vehicle;
-
 import java.util.List;
 
+/**
+ * Client Class, this has only client related info and fields
+ */
+@Data
+@Getter
+@Builder
 public class Client implements Person{
 
     /*
@@ -13,6 +21,7 @@ public class Client implements Person{
      */
     protected List<Vehicle> allVehicles;
     protected List<Account> allAccounts;
+    protected List<String> keys;
 
     protected  boolean hasRentedCars(){
         // TODO implement this method
@@ -39,15 +48,14 @@ public class Client implements Person{
         return false;
     }
 
+
     @Override
     public int getAge() {
-        // TODO
         return 0;
     }
 
     @Override
     public String getName() {
-        // TODO
         return null;
     }
 
