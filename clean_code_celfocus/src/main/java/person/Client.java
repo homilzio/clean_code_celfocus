@@ -108,7 +108,8 @@ public class Client implements Person{
     }
 
     @Override
-    public boolean canBuyACar(Vehicle car) {
+    public boolean canBuyACar(Vehicle car) throws InterruptedException {
+        Thread.sleep(500);
         return car.canBuy(this);
     }
 

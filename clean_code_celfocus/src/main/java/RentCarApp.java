@@ -41,28 +41,46 @@ public class RentCarApp {
         Vehicle ford = new Ford("Blue");
         Vehicle fordBlack = new Ford("Black");
         Vehicle renault = new Ford("Pink", 4);
+        try {
 
-
-        long initialTime = System.currentTimeMillis();
         List<Vehicle> carList = new LinkedList<Vehicle>(Arrays.asList(ford, renault));
+        long initialTime = System.currentTimeMillis();
 
         AtomicBoolean cannotBuyACar = new AtomicBoolean(true); //minorPersonWithName.canBuyACar(ford);
         AtomicBoolean canBuyACar = new AtomicBoolean(false); //minorPersonWithName.canBuyACar(ford);
 
         Thread thread = new Thread(() -> {
-            cannotBuyACar.set(minorPersonWithName.canBuyACar(ford));
+            try {
+                cannotBuyACar.set(minorPersonWithName.canBuyACar(ford));
+            } catch (InterruptedException e) {
+                LOGGER.error("An error occurred in main::", e.getMessage());
+            }
         });
 
         Thread threadNegative = new Thread(() -> {
-            canBuyACar.set(majorPersonWithName.canBuyACar(fordBlack));
+            try {
+                canBuyACar.set(majorPersonWithName.canBuyACar(fordBlack));
+            } catch (InterruptedException e) {
+                LOGGER.error("An error occurred in main::", e.getMessage());
+            }
         });
-        thread.run();
-        threadNegative.run();
+        thread.start();
+        threadNegative.start();
         LOGGER.info("Can {} client buy a car? - {}", minorPersonWithName.getName(), cannotBuyACar);
         LOGGER.info("Can {} client buy a car? - {}", majorPersonWithName.getName(), canBuyACar);
         LOGGER.info("Execution Time with threads was {} of milliseconds", System.currentTimeMillis() - initialTime);
 
-        try {
+        long initialTimeWithoutThread = System.currentTimeMillis();
+
+        boolean cannotBuyACarWithoutThread = minorPersonWithName.canBuyACar(ford);
+        boolean canBuyACarWithoutThread = majorPersonWithName.canBuyACar(fordBlack);
+
+        LOGGER.info("Can {} client buy a car? - {}", minorPersonWithName.getName(), cannotBuyACarWithoutThread);
+        LOGGER.info("Can {} client buy a car? - {}", majorPersonWithName.getName(), canBuyACarWithoutThread);
+
+        LOGGER.info("Execution Time without threads was {} of milliseconds", System.currentTimeMillis() - initialTimeWithoutThread);
+
+
            // Client alberto = createNewClientErrorTest("Alberto", 18, true, Arrays.asList(new AccountImpl(), new AccountImpl()));
         } catch (Exception e) {
            LOGGER.error("An error occurred in main::", e.getMessage());
