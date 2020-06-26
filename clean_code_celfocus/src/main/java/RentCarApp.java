@@ -1,14 +1,10 @@
-import account.Account;
-import account.AccountImpl;
 import error.RentCarAppError;
-import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import person.CarSalesman;
 import person.Client;
 import person.Person;
 import person.Salesman;
-import vehicles.Car;
 import vehicles.Ford;
 import vehicles.Vehicle;
 
@@ -16,6 +12,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 /**
@@ -45,28 +42,30 @@ public class RentCarApp {
         Vehicle fordBlack = new Ford("Black");
         Vehicle renault = new Ford("Pink", 4);
 
+
+        long initialTime = System.currentTimeMillis();
         List<Vehicle> carList = new LinkedList<Vehicle>(Arrays.asList(ford, renault));
 
-        boolean cannotBuyACar = minorPersonWithName.canBuyACar(ford);
-        boolean canBuyACar = majorPersonWithName.canBuyACar(fordBlack);
+        AtomicBoolean cannotBuyACar = new AtomicBoolean(true); //minorPersonWithName.canBuyACar(ford);
+        AtomicBoolean canBuyACar = new AtomicBoolean(false); //minorPersonWithName.canBuyACar(ford);
 
+        Thread thread = new Thread(() -> {
+            cannotBuyACar.set(minorPersonWithName.canBuyACar(ford));
+        });
+
+        Thread threadNegative = new Thread(() -> {
+            canBuyACar.set(majorPersonWithName.canBuyACar(fordBlack));
+        });
+        thread.run();
+        threadNegative.run();
         LOGGER.info("Can {} client buy a car? - {}", minorPersonWithName.getName(), cannotBuyACar);
         LOGGER.info("Can {} client buy a car? - {}", majorPersonWithName.getName(), canBuyACar);
-
-
-        // TODO give proper names and validate
-           /* Person p = new Client();
-            Client c = new Client();
-            */
-
-        // TODO install Lombok plugin
+        LOGGER.info("Execution Time with threads was {} of milliseconds", System.currentTimeMillis() - initialTime);
 
         try {
            // Client alberto = createNewClientErrorTest("Alberto", 18, true, Arrays.asList(new AccountImpl(), new AccountImpl()));
         } catch (Exception e) {
-            //TODO Logg exception properly
-            e.printStackTrace();
-			//TODO write the exception to the new created log file ccc.log
+           LOGGER.error("An error occurred in main::", e.getMessage());
         }
 
     }
