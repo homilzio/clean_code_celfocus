@@ -14,3 +14,5 @@ Maven - https://maven.apache.org/download.cgi
 Intellij - https://www.jetbrains.com/idea/download/download-thanks.html?platform=windows&code=IIC
 
 Cmder - https://cmder.net/
+
+Notepad++: https://notepad-plus-plus.org/downloads/v7.8.8/
