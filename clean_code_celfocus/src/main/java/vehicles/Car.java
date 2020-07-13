@@ -146,4 +146,11 @@ public abstract class  Car implements  Vehicle{
         return !isNull && isMajor && equalsColor;
     }
 
+
+    // TODO pass the correct parameter low cohesion
+    public boolean canBuy(int age, boolean isGreater, String color, BigDecimal cashAmount) {
+
+        return false;
+    }
+
 }

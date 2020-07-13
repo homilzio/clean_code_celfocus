@@ -20,6 +20,7 @@ import java.util.Optional;
 @Getter
 public class Client implements Person{
 
+    public static final int MINIM_AGE_TO_DRIVE = 19;
     /*
         TODO implement the method buy favourite car, that accessing a list salesmen find is car and try to buy it
      */
@@ -86,7 +87,8 @@ public class Client implements Person{
         return false;
     }
 
-    protected boolean rentACar(Car car, boolean isHisBestColor){
+    // this will rent a car -ununcessary comment - overly Verbose method
+    protected boolean rentACarForTheCustomerButOnlyIfHeCanRentAndHasEnoughtMoney(Car car, boolean isHisBestColor){
         // TODO implement this method
         if(!canRentACar(car)){
             return false;
@@ -97,6 +99,43 @@ public class Client implements Person{
     }
 
 
+    /**
+     * just a complex example
+     * @param day
+     * @return
+     */
+    public boolean isGreaterThan(int day) {
+        return (day > this.getToday()) && this.getAge() > MINIM_AGE_TO_DRIVE && this.getName().equals(("maria"));
+    }
+
+
+    public boolean isGreaterThan(Integer day) {
+        //int today = this.getToday();
+        if(day != null && day > 0){
+            return (day > this.getToday()) && this.getAge() > MINIM_AGE_TO_DRIVE && this.getName().equals(("maria"));
+        }
+        return false;
+    }
+
+    // TODO - implement the greater function
+    public boolean isGreaterThan(Optional<Integer> day) {
+
+        Optional<String> value = Optional.of("Value");
+
+        if(value.isPresent()){
+            String s = value.get();
+        }
+
+        return false;
+    }
+
+    // TODO
+    private int getToday() {
+        return 7;
+    }
+
+
+    // this whill return the customer age- ununcessary comment
     @Override
     public int getAge() {
         return this.age;
