@@ -58,6 +58,12 @@ public class RentCarApp {
         Vehicle fordBlack = new Ford("Black");
         Vehicle renault = new Ford("Pink", 4);
         try {
+            Salesman salesman = new HamburguerSalesman("Rui");
+            try {
+                ((HamburguerSalesman) salesman).createNewSalesmanCorrect("Rui");
+            }catch (Exception e){
+                LOGGER.error(e.getMessage());
+            }
 
             List<Vehicle> carList = new LinkedList<Vehicle>(Arrays.asList(ford, renault));
             long initialTime = System.currentTimeMillis();

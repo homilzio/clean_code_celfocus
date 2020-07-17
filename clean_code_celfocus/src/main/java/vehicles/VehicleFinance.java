@@ -48,15 +48,11 @@ public class VehicleFinance implements Vehicle{
         final List<BuyInfo> buyInfoList = new ArrayList<>();
 
         // linkedList melhor para add e remoções
-        // arrylist melhor para leitura -
-
-
+        // arraylist melhor para leitura -
 
         if(!isEmpty(vehicleList) && !isEmpty(clients)){
             vehicleList.forEach( vehicle -> clients
                             .forEach( client -> buyInfoList.add(buyACar(client, vehicle) )));
-
-
         }
 
         buyInfo.setBuyInfoResults(buyInfoList);

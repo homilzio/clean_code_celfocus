@@ -1,5 +1,6 @@
 package person;
 
+import error.RentCarAppError;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import vehicles.Vehicle;
 
@@ -10,7 +11,11 @@ import java.util.List;
  */
 public class HamburguerSalesman  extends Salesman{
 
+    String name;
 
+    public HamburguerSalesman(String name){
+        this.name = name;
+    }
     @Override
     public List<Vehicle> vehicleListInStock() {
         return null;
@@ -34,6 +39,26 @@ public class HamburguerSalesman  extends Salesman{
     @Override
     public Salesman createNewSalesman() {
         return null;
+    }
+
+    // TODO
+    public Salesman createNewSalesman(String name) {
+       if(name == null || !name.contains("Rui") ){
+           try {
+               throw RentCarAppError.INVALID_PERSON_NAME;
+           } catch (Exception e) {
+               e.printStackTrace(); // should not be done - abafator!!!
+           }
+       }
+       return  null;
+    }
+
+
+    public Salesman createNewSalesmanCorrect(String name) throws Exception {
+        if(name == null || name.contains("Rui") ) {
+            throw RentCarAppError.INVALID_PERSON_NAME;
+        }
+        return new HamburguerSalesman(name) ;
     }
 
     @Override
