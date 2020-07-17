@@ -32,6 +32,11 @@ public class HamburguerSalesman  extends Salesman{
     }
 
     @Override
+    public Salesman createNewSalesman() {
+        return null;
+    }
+
+    @Override
     public int getAge() {
         return 0;
     }
@@ -42,7 +47,7 @@ public class HamburguerSalesman  extends Salesman{
     }
 
     @Override
-    public boolean canBuyACar() {
+    public boolean canBuyACar(Vehicle car) throws InterruptedException {
         throw new NotImplementedException();
     }
 }
