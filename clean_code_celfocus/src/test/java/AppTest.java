@@ -39,7 +39,7 @@ public class AppTest extends TestCase {
 
         boolean isValid = isValidListAndNotEmpty(listToStream);
 
-        assertTrue(isValid);
+        assertFalse(isValid);
     }
 
     private boolean isValidList(Optional<List<String>> listToStream) {
