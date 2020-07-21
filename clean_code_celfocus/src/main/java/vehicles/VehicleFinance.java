@@ -37,6 +37,7 @@ public class VehicleFinance implements Vehicle{
 
     @Override
     public void cleanVehicle() {
+        
 
     }
 

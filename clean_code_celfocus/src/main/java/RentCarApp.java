@@ -1,10 +1,7 @@
 import error.RentCarAppError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import person.CarSalesman;
-import person.Client;
-import person.Person;
-import person.Salesman;
+import person.*;
 import vehicles.Ford;
 import vehicles.Vehicle;
 
