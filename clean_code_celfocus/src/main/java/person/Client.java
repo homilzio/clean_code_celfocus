@@ -28,6 +28,37 @@ public class Client implements Person{
         return false;
     }
 
+    // TODO change this to proper class -> BuyOptions
+
+
+    private BuyInfo buyFavoriteCarDirty(List<Vehicle> carList ) throws Exception {
+        // dirty version
+        BuyInfo buyInfo = null;
+        for (Vehicle car : carList) { // possible NPE
+            if(car.canBuy(this)){
+                buyInfo = this.vehicleFinance.buyACar(this, car);
+            }
+        }
+        return buyInfo;
+    }
+
+    private BuyInfo buyFavoriteCarClean(List<Car> carList ) throws Exception {
+        // clean version
+        BuyInfo buyInfo = null;
+
+        if(!CollectionUtils.isEmpty(carList)){
+            Optional<Car> anyCar = carList.stream()
+                    .filter(Objects::nonNull) // car -> car !=null
+                    .filter(car -> carColor.equals(car.getColor()))
+                    .findAny();
+
+            if(anyCar.isPresent()){
+                buyInfo = this.vehicleFinance.buyACar(this, anyCar.get());
+            }
+        }
+        return buyInfo;
+    }
+
     /**
      *  TODO please implement this method and change the necessary methods to leave the class as clean as possible
      * @param car - the car that this customer wants to buy.
@@ -51,17 +82,21 @@ public class Client implements Person{
 
     @Override
     public int getAge() {
-        return 0;
+        return this.age;
     }
 
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 
     @Override
-    public boolean canBuyACar() {
-        // TODO
-        return false;
+    public boolean canBuyACar(Vehicle car) throws InterruptedException {
+        Thread.sleep(500);
+        return car.canBuy(this);
+    }
+
+    public String getColor() {
+        return this.carColor;
     }
 }

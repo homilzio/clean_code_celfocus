@@ -4,12 +4,18 @@ import error.RentCarAppError;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import person.CarSalesman;
 import person.Client;
 import person.Person;
 import person.Salesman;
+import vehicles.Ford;
+import vehicles.Vehicle;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 /**
@@ -30,14 +36,65 @@ public class RentCarApp {
             Client c = new Client();
             */
 
-        // TODO install Lombok plugin
 
+
+
+        Salesman instanceSalesMan = new CarSalesman();
+
+        Salesman newSalesman = instanceSalesMan.createNewSalesman();
+
+        int newSalesmanAge = Objects.nonNull(newSalesman)? newSalesman.getAge() : 0;
+        System.out.println(newSalesmanAge);
+
+        Person minorPersonWithName = new Client("Black", "Joana", 17);
+        Person majorPersonWithName = new Client("Black", "Maria", 18);
+
+        Vehicle ford = new Ford("Blue");
+        Vehicle fordBlack = new Ford("Black");
+        Vehicle renault = new Ford("Pink", 4);
         try {
-            Client alberto = createNewClientErrorTest("Alberto", 18, true, Arrays.asList(new AccountImpl(), new AccountImpl()));
+
+        List<Vehicle> carList = new LinkedList<Vehicle>(Arrays.asList(ford, renault));
+        long initialTime = System.currentTimeMillis();
+
+        AtomicBoolean cannotBuyACar = new AtomicBoolean(true); //minorPersonWithName.canBuyACar(ford);
+        AtomicBoolean canBuyACar = new AtomicBoolean(false); //minorPersonWithName.canBuyACar(ford);
+
+        Thread thread = new Thread(() -> {
+            try {
+                cannotBuyACar.set(minorPersonWithName.canBuyACar(ford));
+            } catch (InterruptedException e) {
+                LOGGER.error("An error occurred in main::", e.getMessage());
+            }
+        });
+
+        Thread threadNegative = new Thread(() -> {
+            try {
+                canBuyACar.set(majorPersonWithName.canBuyACar(fordBlack));
+            } catch (InterruptedException e) {
+                LOGGER.error("An error occurred in main::", e.getMessage());
+            }
+        });
+        thread.start();
+        threadNegative.start();
+        LOGGER.info("Can {} client buy a car? - {}", minorPersonWithName.getName(), cannotBuyACar);
+        LOGGER.info("Can {} client buy a car? - {}", majorPersonWithName.getName(), canBuyACar);
+        LOGGER.info("Execution Time with threads was {} of milliseconds", System.currentTimeMillis() - initialTime);
+
+        long initialTimeWithoutThread = System.currentTimeMillis();
+
+        boolean cannotBuyACarWithoutThread = minorPersonWithName.canBuyACar(ford);
+        boolean canBuyACarWithoutThread = majorPersonWithName.canBuyACar(fordBlack);
+
+        LOGGER.info("Can {} client buy a car? - {}", minorPersonWithName.getName(), cannotBuyACarWithoutThread);
+        LOGGER.info("Can {} client buy a car? - {}", majorPersonWithName.getName(), canBuyACarWithoutThread);
+
+        LOGGER.info("Execution Time without threads was {} of milliseconds", System.currentTimeMillis() - initialTimeWithoutThread);
+
+
+           // Client alberto = createNewClientErrorTest("Alberto", 18, true, Arrays.asList(new AccountImpl(), new AccountImpl()));
         } catch (Exception e) {
-            //TODO Logg exception properly
-            e.printStackTrace();
-			//TODO write the exception to the new created log file ccc.log
+           LOGGER.error("An error occurred in main::", e.getMessage());
         }
 
     }
