@@ -4,9 +4,11 @@ import account.Account;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
+import org.springframework.util.CollectionUtils;
 import vehicles.Car;
 import vehicles.Vehicle;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Client Class, this has only client related info and fields
@@ -26,6 +28,37 @@ public class Client implements Person{
     protected  boolean hasRentedCars(){
         // TODO implement this method
         return false;
+    }
+
+    // TODO change this to proper class -> BuyOptions
+
+
+    private BuyInfo buyFavoriteCarDirty(List<Vehicle> carList ) throws Exception {
+        // dirty version
+        BuyInfo buyInfo = null;
+        for (Vehicle car : carList) { // possible NPE
+            if(car.canBuy(this)){
+                buyInfo = this.vehicleFinance.buyACar(this, car);
+            }
+        }
+        return buyInfo;
+    }
+
+    private BuyInfo buyFavoriteCarClean(List<Car> carList ) throws Exception {
+        // clean version
+        BuyInfo buyInfo = null;
+
+        if(!CollectionUtils.isEmpty(carList)){
+            Optional<Car> anyCar = carList.stream()
+                    .filter(Objects::nonNull) // car -> car !=null
+                    .filter(car -> carColor.equals(car.getColor()))
+                    .findAny();
+
+            if(anyCar.isPresent()){
+                buyInfo = this.vehicleFinance.buyACar(this, anyCar.get());
+            }
+        }
+        return buyInfo;
     }
 
     /**
@@ -51,17 +84,21 @@ public class Client implements Person{
 
     @Override
     public int getAge() {
-        return 0;
+        return this.age;
     }
 
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 
     @Override
-    public boolean canBuyACar() {
-        // TODO
-        return false;
+    public boolean canBuyACar(Vehicle car) throws InterruptedException {
+        Thread.sleep(500);
+        return car.canBuy(this);
+    }
+
+    public String getColor() {
+        return this.carColor;
     }
 }

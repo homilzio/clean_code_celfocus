@@ -9,6 +9,8 @@ You will need to install:
 
 JDK 8 - https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
 
+GIT - https://git-scm.com/download/
+
 Maven - https://maven.apache.org/download.cgi
 
 Intellij - https://www.jetbrains.com/idea/download/download-thanks.html?platform=windows&code=IIC
