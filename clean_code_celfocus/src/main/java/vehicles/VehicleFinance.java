@@ -40,26 +40,6 @@ public class VehicleFinance implements Vehicle{
 
     }
 
-    // each client can buy any car
-
-    public BuyInfo sellCarsToCustomers(List<Vehicle> vehicleList, List<Person> clients){
-
-        BuyInfo buyInfo = new BuyInfoModel();
-        final List<BuyInfo> buyInfoList = new ArrayList<>();
-
-        // linkedList melhor para add e remoções
-        // arraylist melhor para leitura -
-
-        if(!isEmpty(vehicleList) && !isEmpty(clients)){
-            vehicleList.forEach( vehicle -> clients
-                            .forEach( client -> buyInfoList.add(buyACar(client, vehicle) )));
-        }
-
-        buyInfo.setBuyInfoResults(buyInfoList);
-
-        return buyInfo;
-    }
-
     public BuyInfo buyACar(Person client, Vehicle car) {
 
         // TODO implement with proper validations
