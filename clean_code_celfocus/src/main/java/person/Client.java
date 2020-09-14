@@ -4,9 +4,11 @@ import account.Account;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
+import org.springframework.util.CollectionUtils;
 import vehicles.Car;
 import vehicles.Vehicle;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Client Class, this has only client related info and fields
