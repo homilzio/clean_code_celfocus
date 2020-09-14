@@ -1,13 +1,16 @@
 package person;
 
 import account.Account;
-import lombok.Builder;
+import buydetails.BuyInfo;
 import lombok.Data;
 import lombok.Getter;
 import org.springframework.util.CollectionUtils;
 import vehicles.Car;
 import vehicles.Vehicle;
+import vehicles.VehicleFinance;
+
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -15,15 +18,28 @@ import java.util.Optional;
  */
 @Data
 @Getter
-@Builder
 public class Client implements Person{
 
+    public static final int MINIM_AGE_TO_DRIVE = 19;
     /*
         TODO implement the method buy favourite car, that accessing a list salesmen find is car and try to buy it
      */
     protected List<Vehicle> allVehicles;
     protected List<Account> allAccounts;
     protected List<String> keys;
+
+    private final String carColor;
+    private final String name;
+    private int age;
+    private final VehicleFinance vehicleFinance;
+
+
+    public Client(final String carColor, final String name, int age){
+        this.carColor = carColor;
+        this.name = name;
+        this.age = age;
+        this.vehicleFinance = new VehicleFinance();
+    }
 
     protected  boolean hasRentedCars(){
         // TODO implement this method
@@ -71,7 +87,8 @@ public class Client implements Person{
         return false;
     }
 
-    protected boolean rentACar(Car car, boolean isHisBestColor){
+    // this will rent a car -ununcessary comment - overly Verbose method
+    protected boolean rentACarForTheCustomerButOnlyIfHeCanRentAndHasEnoughtMoney(Car car, boolean isHisBestColor){
         // TODO implement this method
         if(!canRentACar(car)){
             return false;
@@ -82,6 +99,43 @@ public class Client implements Person{
     }
 
 
+    /**
+     * just a complex example
+     * @param day
+     * @return
+     */
+    public boolean isGreaterThan(int day) {
+        return (day > this.getToday()) && this.getAge() > MINIM_AGE_TO_DRIVE && this.getName().equals(("maria"));
+    }
+
+
+    public boolean isGreaterThan(Integer day) {
+        //int today = this.getToday();
+        if(day != null && day > 0){
+            return (day > this.getToday()) && this.getAge() > MINIM_AGE_TO_DRIVE && this.getName().equals(("maria"));
+        }
+        return false;
+    }
+
+    // TODO - implement the greater function
+    public boolean isGreaterThan(Optional<Integer> day) {
+
+        Optional<String> value = Optional.of("Value");
+
+        if(value.isPresent()){
+            String s = value.get();
+        }
+
+        return false;
+    }
+
+    // TODO
+    private int getToday() {
+        return 7;
+    }
+
+
+    // this whill return the customer age- ununcessary comment
     @Override
     public int getAge() {
         return this.age;

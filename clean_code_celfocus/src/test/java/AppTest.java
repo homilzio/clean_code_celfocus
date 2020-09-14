@@ -1,4 +1,5 @@
 import junit.framework.TestCase;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,9 +32,24 @@ public class AppTest extends TestCase {
         assertTrue(isValid);
     }
 
-    private boolean isValidList(Optional<List<String>> listToStream) {
-        return listToStream.isPresent() && listToStream.get() != null;
+    // TODO fix the test error
+    public void testListNotEmpty() {
+        Optional<List<String>> listToStream;
+        listToStream = Optional.of(Arrays.asList());
+
+        boolean isValid = isValidListAndNotEmpty(listToStream);
+
+        assertFalse(isValid);
     }
+
+    private boolean isValidList(Optional<List<String>> listToStream) {
+        return listToStream.isPresent() && listToStream.get() != null ;
+    }
+
+    private boolean isValidListAndNotEmpty(Optional<List<String>> listToStream) {
+        return listToStream.isPresent() && listToStream.get() != null  && !CollectionUtils.isEmpty(listToStream.get());
+    }
+
 
     private boolean isValidReturn(Optional<List<String>> listToStream) {
 

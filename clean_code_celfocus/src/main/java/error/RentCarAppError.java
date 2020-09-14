@@ -12,7 +12,7 @@ public class RentCarAppError extends Exception{
     public static final Exception INVALID_PERSON_NAME
             = new Exception(INVALID_USER_NAME);
 
- public static final Exception METHOD_NOT_IMPLEMENTED
+    public static final Exception METHOD_NOT_IMPLEMENTED
             = new Exception(NOT_IMPLEMENTED);
 
 }
