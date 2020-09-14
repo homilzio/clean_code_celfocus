@@ -58,7 +58,7 @@ public class Client implements Person{
         return false;
     }
 
-    // this will rent a car -ununcessary comment - overly Verbose method
+    // this will rent a car - unnecessary comment - overly Verbose method
     protected boolean rentACarForTheCustomerButOnlyIfHeCanRentAndHasEnoughtMoney(Car car, boolean isHisBestColor){
         // TODO implement this method
         if(!canRentACar(car)){
