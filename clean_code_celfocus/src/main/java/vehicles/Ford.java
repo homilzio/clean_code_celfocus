@@ -4,6 +4,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import person.CarSalesman;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Ford extends Car {
@@ -78,6 +79,19 @@ public class Ford extends Car {
     // Overly verbose
     public boolean isAllVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy(List<Car> cars){
         return isValidVehicleList(cars);
+    }
+
+
+    // generic
+    // TODO change this to a proper class
+    public <T> T isAllVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy(T t){
+        return  t instanceof List && isValidVehicleList((List)t) ? t : null;
+    }
+
+    protected <T> T jsonRPC(T paramValue) {
+        Ford black = new Ford("Black", 4);
+        T allVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy = isAllVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy(paramValue);//isAllVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy(Arrays.asList(black));
+        return allVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy;
     }
 
 }
