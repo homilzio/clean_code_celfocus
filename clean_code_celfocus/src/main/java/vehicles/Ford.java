@@ -63,10 +63,10 @@ public class Ford extends Car {
         return false;
     }
 
-    private boolean isValidVehicleList(List<Car> cars) {
+  /*  private boolean isValidVehicleList(List<Car> cars) {
         return CollectionUtils.isEmpty(cars) && cars.size() == MAX_CAR_SIZE;
     }
-
+*/
 
     public boolean isAllVehiclesAvailableIdeal(List<Car> cars){
         return isValidVehicleList(cars);
@@ -86,6 +86,11 @@ public class Ford extends Car {
     // TODO change this to a proper class
     public <T> T isAllVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy(T t){
         return  t instanceof List && isValidVehicleList((List)t) ? t : null;
+    }
+
+    @Override
+    public boolean isValidVehicleList(List<Car> cars) {
+        return false;
     }
 
     protected <T> T jsonRPC(T paramValue) {
