@@ -45,6 +45,8 @@ public class VehicleFinance implements Vehicle{
     public BuyInfo sellCarsToCustomers(List<Vehicle> vehicleList, List<Person> clients){
 
         BuyInfo buyInfo = new BuyInfoModel();
+        // TODO validate documentation comment
+        // buyInfo.canBuy(car)
         final List<BuyInfo> buyInfoList = new ArrayList<>();
 
         // linkedList melhor para add e remoções

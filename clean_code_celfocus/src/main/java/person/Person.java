@@ -11,7 +11,6 @@ public interface Person {
     int getAge();
     String getName();
     boolean canBuyACar(Vehicle car) throws InterruptedException;
-
     // the intent was to create a function to check if the customer has minimun age to checkout
     default boolean hasMinimunAgeToBuyACar(Person p) {
         return 18 < p.getAge();
