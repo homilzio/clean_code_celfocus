@@ -40,6 +40,7 @@ public class VehicleFinance implements Vehicle{
 
     }
 
+    
     @Override
     public boolean isValidVehicleList(List<Car> cars) {
         return false;

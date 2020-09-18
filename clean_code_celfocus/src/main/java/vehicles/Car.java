@@ -5,6 +5,7 @@ import buydetails.BuyInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import person.Client;
+import person.Person;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,6 +18,7 @@ public abstract class  Car implements  Vehicle{
     public static final String WHITE_COLOR = "WHITE";
     public static final Logger LOGGER = LoggerFactory.getLogger(Car.class);
 
+    private Person owner;
     private final String WHITE;
     private String id;
     private Tire tire;
@@ -39,6 +41,7 @@ public abstract class  Car implements  Vehicle{
         this.WHITE = WHITE_COLOR;
         this.color = color;
         this.vehicleFinance = new VehicleFinance();
+        this.owner = null;
     }
 
     public Car(String color, int tire ){
@@ -47,6 +50,15 @@ public abstract class  Car implements  Vehicle{
         this.tire = new Tire();
         this.color = color;
         this.WHITE = WHITE_COLOR;
+    }
+
+    public Car(String color, int tire, Person owner ){
+        // TODO validate what can be done better
+        this.id = "Car-" + Math.random();
+        this.tire = new Tire();
+        this.color = color;
+        this.WHITE = WHITE_COLOR;
+        this.owner = owner;
     }
 
     public boolean rent(Client client) {
@@ -153,4 +165,11 @@ public abstract class  Car implements  Vehicle{
         return false;
     }
 
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
+    }
 }

@@ -126,4 +126,48 @@ public class Client implements Person{
     public String getColor() {
         return this.carColor;
     }
+
+    /**
+     *
+     * @param car - the car to sell
+     * @return
+     * @throws Exception
+     */
+    public boolean canSellACar(Car car,  Person p) throws Exception{
+
+        /// todo implement throwif like
+        if(car == null || !this.equals(car.getOwner())) {
+            return false; // TODO throw exception
+        }
+        // TODO validate if the buyer has enough money to buy the car  25/09
+
+        return false;
+    }
+
+
+
+    // TODO
+    /**
+     *
+     * @param car - the car to sell
+     * @return
+     * @throws Exception
+     */
+    public boolean sellAVehicle(Car car,  Person p)throws Exception{
+
+
+
+        return false;
+    }
+
+    // TODO --> add a new test and check the possible problems - 25/09
+    @Override
+    public boolean equals(Object person){
+        if( person == null || !(person instanceof Person)){
+            return false;
+        }
+
+        String name = ((Person) person).getName();
+        return name.equals(this.name);
+    }
 }

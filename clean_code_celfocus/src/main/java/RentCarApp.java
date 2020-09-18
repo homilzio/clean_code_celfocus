@@ -67,7 +67,9 @@ public class RentCarApp {
 
             AtomicBoolean cannotBuyACar = new AtomicBoolean(true); //minorPersonWithName.canBuyACar(ford);
             AtomicBoolean canBuyACar = new AtomicBoolean(false); //minorPersonWithName.canBuyACar(ford);
-
+            /**
+             * Divider comment --> Aqui vou carregar as threads e inicia-las
+             */
             Thread thread = new Thread(() -> {
                 try {
                     cannotBuyACar.set(minorPersonWithName.canBuyACar(ford));
@@ -83,6 +85,10 @@ public class RentCarApp {
                     LOGGER.error("An error occurred in main::", e.getMessage());
                 }
             });
+
+            /**
+             * Divider comment --> aqui vou iniciar as threads
+             */
             thread.start();
             threadNegative.start();
             LOGGER.info("Can {} client buy a car? - {}", minorPersonWithName.getName(), cannotBuyACar);
