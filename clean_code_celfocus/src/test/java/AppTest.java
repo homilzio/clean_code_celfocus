@@ -43,7 +43,7 @@ public class AppTest extends TestCase {
     }
 
     private boolean isValidList(Optional<List<String>> listToStream) {
-        return listToStream.isPresent() && listToStream.get() == null ;
+        return listToStream.isPresent() && listToStream.get() != null ;
     }
 
     private boolean isValidListAndNotEmpty(Optional<List<String>> listToStream) {
