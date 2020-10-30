@@ -49,7 +49,7 @@ public class Client implements Person{
     // TODO change this to proper class -> BuyOptions
 
 
-    private BuyInfo buyFavoriteCarDirty(List<Vehicle> carList ) throws Exception {
+    public BuyInfo buyFavoriteCarDirty(List<Vehicle> carList ) throws Exception {
         // dirty version
         BuyInfo buyInfo = null;
         for (Vehicle car : carList) { // possible NPE
@@ -60,7 +60,7 @@ public class Client implements Person{
         return buyInfo;
     }
 
-    private BuyInfo buyFavoriteCarClean(List<Car> carList ) throws Exception {
+    public BuyInfo buyFavoriteCarClean(List<Car> carList ) throws Exception {
         // clean version
         BuyInfo buyInfo = null;
 
@@ -87,7 +87,7 @@ public class Client implements Person{
         return false;
     }
 
-    // this will rent a car -ununcessary comment - overly Verbose method
+    // this will rent a car - ununcessary comment - overly Verbose method
     protected boolean rentACarForTheCustomerButOnlyIfHeCanRentAndHasEnoughtMoney(Car car, boolean isHisBestColor){
         // TODO implement this method
         if(!canRentACar(car)){
