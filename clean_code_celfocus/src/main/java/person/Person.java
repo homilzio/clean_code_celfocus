@@ -1,11 +1,13 @@
 package person;
 
+import vehicles.Car;
+import vehicles.Vehicle;
+
 /**
  * This is a Person interface, it defines the general characteristics of a Human being in this context
  */
 public interface Person {
 
-    int minimumAge = 18;
     int getAge();
     String getName();
     boolean canBuyACar(Vehicle car) throws InterruptedException;
