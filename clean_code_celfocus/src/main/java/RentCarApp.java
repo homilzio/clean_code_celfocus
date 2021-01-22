@@ -2,6 +2,8 @@ import error.RentCarAppError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import person.*;
+import util.Status;
+import util.Validations;
 import vehicles.Ford;
 import vehicles.Vehicle;
 
@@ -23,7 +25,6 @@ public class RentCarApp {
         LOGGER.info("App started!!");
         printWelcomeMessage();
         //TODO add relevant type
-
 
         Salesman instanceSalesMan = new CarSalesman();
 
@@ -99,6 +100,11 @@ public class RentCarApp {
 
             LOGGER.info("Execution Time without threads was {} of milliseconds", System.currentTimeMillis() - initialTimeWithoutThread);
 
+            Status f = Status.F; // TODO validate the status ENUM
+
+            boolean validAgeToDrink = Validations.isValidAgeToDrink(8); // TODO -- magic number!!! -- static method
+            Validations validations = new Validations();
+            validations.isValidAgeToDrink(8); // TODO instance method --> create a test
 
             // Client alberto = createNewClientErrorTest("Alberto", 18, true, Arrays.asList(new AccountImpl(), new AccountImpl()));
         } catch (Exception e) {
@@ -132,4 +138,5 @@ public class RentCarApp {
         System.out.println("Hello, Salesman created");
         return null;
     }
+
 }

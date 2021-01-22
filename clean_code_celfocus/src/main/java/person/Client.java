@@ -40,15 +40,11 @@ public class Client implements Person{
         this.age = age;
         this.vehicleFinance = new VehicleFinance();
     }
-
     protected  boolean hasRentedCars(){
         // TODO implement this method
         return false;
     }
-
     // TODO change this to proper class -> BuyOptions
-
-
     public BuyInfo buyFavoriteCarDirty(List<Vehicle> carList ) throws Exception {
         // dirty version
         BuyInfo buyInfo = null;
@@ -59,7 +55,6 @@ public class Client implements Person{
         }
         return buyInfo;
     }
-
     public BuyInfo buyFavoriteCarClean(List<Car> carList ) throws Exception {
         // clean version
         BuyInfo buyInfo = null;
