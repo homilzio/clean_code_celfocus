@@ -8,6 +8,7 @@ import java.util.List;
 public interface Vehicle {
     boolean getStatus();
     boolean hasInsurance();
+    String getColor();
     /**
      *
      * @param client client to validate the buy method

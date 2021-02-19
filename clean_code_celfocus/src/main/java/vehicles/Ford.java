@@ -3,6 +3,7 @@ package vehicles;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import person.CarSalesman;
+import util.Color;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,7 +53,7 @@ public class Ford extends Car {
         for (Car car: cars) {
             for(int index = 0; index < cars.size(); ++ index){
                 for (int j = 0; j < INTERMEDIATE_CAR_SIZE; ++j){
-                    for (int k = 0; k < Ford.INTERMEDIATE_CAR_SIZE; ++k){
+                    for (int k = 0; k < INTERMEDIATE_CAR_SIZE; ++k){
                         if(k == MIN_CAR_SIZE){
                             return false;
                         }
@@ -97,6 +98,26 @@ public class Ford extends Car {
         Ford black = new Ford("Black", 4);
         T allVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy = isAllVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy(paramValue);//isAllVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy(Arrays.asList(black));
         return allVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy;
+    }
+
+    public boolean isValidCarTypeDirty(Car car){
+
+        if(car.isClean() && Color.WHITE.value().equals(car.getColor())){
+            if(car.hasInsurance() && car.getStatus())
+                return true;
+            else if(!isClean()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //TODO change all to enum
+    public static boolean isValidCarTypeClean(Car car){
+        if(car == null || !car.getStatus() || !car.hasInsurance()){
+            return false;
+        }
+        return car.isClean() && car.getColor().equals(Color.WHITE.value());
     }
 
 }

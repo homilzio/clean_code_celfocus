@@ -59,7 +59,7 @@ public class RentCarApp {
             try {
                 ((HamburguerSalesman) salesman).createNewSalesmanCorrect("Rui");
             }catch (Exception e){
-                LOGGER.error(e.getMessage());
+                LOGGER.error(e.getMessage()); // TODO padrão abafator
             }
 
             List<Vehicle> carList = new LinkedList<Vehicle>(Arrays.asList(ford, renault));

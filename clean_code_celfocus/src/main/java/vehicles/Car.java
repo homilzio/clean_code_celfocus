@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import person.Client;
 import person.Person;
+import util.Color;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -129,7 +130,11 @@ public abstract class  Car implements  Vehicle{
     }
 
     public String getColor() {
-        return color;
+        return Color.valueOf(color).value();
+    }
+
+    public Color getColorEnum() {
+        return Color.valueOf(color);
     }
 
     public void setColor(String color) {

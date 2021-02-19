@@ -2,6 +2,7 @@ package person;
 
 import account.Account;
 import buydetails.BuyInfo;
+import buydetails.BuyInfoModel;
 import lombok.Data;
 import lombok.Getter;
 import org.springframework.util.CollectionUtils;
@@ -12,6 +13,8 @@ import vehicles.VehicleFinance;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Client Class, this has only client related info and fields
@@ -144,6 +147,22 @@ public class Client implements Person{
         return false;
     }
 
+
+    public BuyInfo buyACar(CarSalesman salesmanList){
+        if(salesmanList == null || salesmanList.vehicleListInStock().isEmpty()){
+            return null;
+        }
+        BuyInfo buyInfo = new BuyInfoModel();
+
+        Optional<Vehicle> first = salesmanList.vehicleListInStock()
+                .stream().filter(vehicle -> "Blue".equals(vehicle.getColor()))
+                .findFirst();
+
+        if(first.isPresent()){
+            buyInfo.setBuyInfoResults(null);
+        }
+        return buyInfo;
+    }
 
 
     // TODO

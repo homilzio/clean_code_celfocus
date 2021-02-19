@@ -30,6 +30,12 @@ public class VehicleFinance implements Vehicle{
         return false;
     }
 
+    // TODO is it correct to implement?
+    @Override
+    public String getColor() {
+        throw new UnsupportedOperationException();
+    }
+
     @Override
     public boolean canBuy(Client client) {
         return false;
