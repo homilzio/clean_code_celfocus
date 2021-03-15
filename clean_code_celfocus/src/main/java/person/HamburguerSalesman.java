@@ -1,6 +1,8 @@
 package person;
 
 import error.RentCarAppError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import vehicles.Vehicle;
 
@@ -10,6 +12,8 @@ import java.util.List;
  * This is an implementation of the Salesman abstraction
  */
 public class HamburguerSalesman  extends Salesman{
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(HamburguerSalesman.class);
 
     String name;
 
@@ -56,6 +60,7 @@ public class HamburguerSalesman  extends Salesman{
 
     public Salesman createNewSalesmanCorrect(String name) throws Exception {
         if(name == null || name.contains("Rui") ) {
+            LOGGER.warn("Another one, please take cake");
             throw RentCarAppError.INVALID_PERSON_NAME;
         }
         return new HamburguerSalesman(name) ;

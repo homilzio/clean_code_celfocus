@@ -63,7 +63,7 @@ public class Client implements Person{
     private BuyInfo buyFavoriteCarClean(List<Car> carList ) throws Exception {
         // clean version
         BuyInfo buyInfo = null;
-
+        //validate if collection is empty before proceed
         if(!CollectionUtils.isEmpty(carList)){
             Optional<Car> anyCar = carList.stream()
                     .filter(Objects::nonNull) // car -> car !=null
