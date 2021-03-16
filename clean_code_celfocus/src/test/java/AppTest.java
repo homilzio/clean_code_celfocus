@@ -63,6 +63,9 @@ public class AppTest extends TestCase {
     public void testListStream(){
 
         List<String> listToSearch = Arrays.asList("AbA", "Joana", "portugal", "Joaquim", "francis", null, "Portugal");
+        List<String> listToSearch1 = Arrays.asList("AbA", "Joana", "portugal", "Joaquim", "francis", "Portugal");
+        List<String> listToSearch2 = Arrays.asList("Portugal");
+        List<String> listToSearch3 = Arrays.asList("Portugal");
 
         List<String> collect = listToSearch.stream()
                 .filter(element -> element != null) // delete all nulls

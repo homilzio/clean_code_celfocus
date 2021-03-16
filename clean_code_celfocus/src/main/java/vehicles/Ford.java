@@ -96,7 +96,9 @@ public class Ford extends Car {
 
     protected <T> T jsonRPC(T paramValue) {
         Ford black = new Ford("Black", 4);
+
         T allVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy = isAllVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy(paramValue);//isAllVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy(Arrays.asList(black));
+
         return allVehiclesAvailableIdealAndCanBeFoundInTheSalesmanMarketPlaceToBuy;
     }
 

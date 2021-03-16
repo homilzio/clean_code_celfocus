@@ -155,7 +155,8 @@ public class Client implements Person{
         BuyInfo buyInfo = new BuyInfoModel();
 
         Optional<Vehicle> first = salesmanList.vehicleListInStock()
-                .stream().filter(vehicle -> "Blue".equals(vehicle.getColor()))
+                .stream()
+                .filter(vehicle -> "Blue".equals(vehicle.getColor())) // keep only blue vehicles
                 .findFirst();
 
         if(first.isPresent()){
