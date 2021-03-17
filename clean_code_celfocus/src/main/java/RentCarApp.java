@@ -45,6 +45,8 @@ public class RentCarApp {
             newSalesmanAux = 0;
         }
 
+        Salesman joaquim = new HamburguerSalesman("Joaquim");
+
 
         System.out.println(newSalesmanAge);
 

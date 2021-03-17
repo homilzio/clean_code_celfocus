@@ -1,6 +1,9 @@
 package person;
 
+import buydetails.Hamburguer;
 import error.RentCarAppError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import vehicles.Vehicle;
 
@@ -10,6 +13,8 @@ import java.util.List;
  * This is an implementation of the Salesman abstraction
  */
 public class HamburguerSalesman  extends Salesman{
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(HamburguerSalesman.class);
 
     String name;
 
@@ -74,5 +79,26 @@ public class HamburguerSalesman  extends Salesman{
     @Override
     public boolean canBuyACar(Vehicle car) throws InterruptedException {
         throw new NotImplementedException();
+    }
+
+    public void sellHamburguer(Client client, String hamburguerId){
+        // TODO implement method
+        throw new NotImplementedException();
+    }
+
+    public void sellHamburguer(Client client, Hamburguer hamburguer){
+
+        if(client == null){
+            LOGGER.info("sellHamburguer::client is null");
+            return;
+        }
+
+        if(hamburguer == null){
+            LOGGER.info("sellHamburguer::hamburguer is null");
+            return;
+        }
+        if(client.getCash() >= hamburguer.getPrice()){
+            hamburguer.buy(client);
+        }
     }
 }

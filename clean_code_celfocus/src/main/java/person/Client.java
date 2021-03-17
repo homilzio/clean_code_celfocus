@@ -34,6 +34,7 @@ public class Client implements Person{
     private final String carColor;
     private final String name;
     private int age;
+    private int cash;
     private final VehicleFinance vehicleFinance;
 
 
@@ -42,6 +43,7 @@ public class Client implements Person{
         this.name = name;
         this.age = age;
         this.vehicleFinance = new VehicleFinance();
+        this.cash = 50;
     }
 
     protected  boolean hasRentedCars(){
@@ -189,5 +191,13 @@ public class Client implements Person{
 
         String name = ((Person) person).getName();
         return name.equals(this.name);
+    }
+
+    public int getCash() {
+        return cash;
+    }
+
+    public void setCash(int cash) {
+        this.cash = cash;
     }
 }
