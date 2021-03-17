@@ -147,7 +147,7 @@ public abstract class  Car implements  Vehicle{
         boolean isMajor = !isNull && (client.getAge() >= ISMAJOR);
         boolean equalsColor = !isNull && this.color.equals(client.getColor());
 
-        if(isNull){
+       /* if(isNull){
             LOGGER.warn("canBuy::Client is null");
             return false; // TODO
         }
@@ -158,6 +158,28 @@ public abstract class  Car implements  Vehicle{
 
         if(!equalsColor){
             LOGGER.warn("canBuy::Client with name {}, is expecting color: {} and this car color is: {}", client.getName(), client.getColor(), this.color);
+        }*/
+
+        return !isNull && isMajor && equalsColor;
+    }
+
+    //@Override
+    public boolean canBuy(int age, String color, String name) {
+        boolean isNull = color == null;
+        boolean isMajor = !isNull && (age >= ISMAJOR);
+        boolean equalsColor = !isNull && this.color.equals(color);
+
+        if(isNull){
+            LOGGER.warn("canBuy::Client is null");
+            return false; // TODO
+        }
+
+        if(!isMajor){
+            LOGGER.warn("canBuy::Client whith name {} is not major", name);
+        }
+
+        if(!equalsColor){
+            LOGGER.warn("canBuy::Client with name {}, is expecting color: {} and this car color is: {}",name, color, this.color);
         }
 
         return !isNull && isMajor && equalsColor;
