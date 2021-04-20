@@ -88,7 +88,7 @@ public class HamburguerSalesman  extends Salesman{
 
     public void sellHamburguer(Client client, Hamburguer hamburguer){
 
-        if(client == null){
+        if(client == null){ //fail fast
             LOGGER.info("sellHamburguer::client is null");
             return;
         }

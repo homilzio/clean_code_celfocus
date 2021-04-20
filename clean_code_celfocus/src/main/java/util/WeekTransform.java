@@ -5,6 +5,8 @@ import vehicles.Car;
 
 public class WeekTransform {
 
+    public static final int DAY_3 = 3;
+
     // method to validate and return the weekday by number
     public String weekday(int day) {
 
@@ -50,7 +52,7 @@ public class WeekTransform {
     public String weekdayIf(int day) {
 
         if(day == 1 ){
-            day = 3;
+            day = DAY_3;
             return "Monday";
         }
 
@@ -58,8 +60,12 @@ public class WeekTransform {
             return "Tuesday";
         }
 
-        else if(day ==3){
+        else if(day == 3){
             return "Wednesday";
+        }
+
+        else if(day == 4){
+            return "Thursday";
         }
         else {
             return "No date defined";

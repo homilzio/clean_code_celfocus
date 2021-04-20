@@ -69,8 +69,9 @@ public class AppTest extends TestCase {
 
         List<String> collect = listToSearch.stream()
                 .filter(element -> element != null) // delete all nulls
-                .filter(element -> element.startsWith("P")) // delete all elements that does not start With P
+                .filter(element1 -> element1.startsWith("P")) // delete all elements that does not start With P
                 .filter(element -> toLowerCase(element).startsWith("p"))
+                //.map(element -> element.toString())
                 //.filter( element -> element.toLowerCase().startsWith("P") ) // delete all elements that does not start With P
                 .filter(element -> element.equals("Portugal"))
                 .collect(Collectors.toList());
