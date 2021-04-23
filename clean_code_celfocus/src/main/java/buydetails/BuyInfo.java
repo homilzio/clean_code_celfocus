@@ -24,4 +24,6 @@ public interface BuyInfo {
 
     // TODO add relevant info
 
+    // This change should be included on the new branch
+
 }
