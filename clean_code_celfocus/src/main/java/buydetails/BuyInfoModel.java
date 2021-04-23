@@ -10,7 +10,17 @@ import java.util.List;
  * Documentation comment -> this class should be userd to Pass the parameters
  */
 public class BuyInfoModel implements BuyInfo {
+
+    boolean operationSuccess;
     private List<BuyInfo> buyInfoResults;
+
+    public BuyInfoModel(boolean operationSuccess){
+        this.operationSuccess = operationSuccess;
+    }
+
+    public BuyInfoModel(){
+        this.operationSuccess = false;
+    }
 
     // TODO implement method with proper validations
     /***
@@ -33,5 +43,11 @@ public class BuyInfoModel implements BuyInfo {
     @Override
     public void setBuyInfoResults(List<BuyInfo> buyInfoResults) {
         this.buyInfoResults = buyInfoResults;
+        this.operationSuccess = true;
+    }
+
+    @Override
+    public boolean getOperationStatus() {
+        return operationSuccess;
     }
 }

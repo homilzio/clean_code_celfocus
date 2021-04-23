@@ -20,6 +20,8 @@ public interface BuyInfo {
      */
     boolean canBuy(Car car, Date operationDate, Person buyer);
     void setBuyInfoResults(List<BuyInfo> buyInfoResults);
+    boolean getOperationStatus();
+
     List<BuyInfo> getBuyInfoResults();
 
     // TODO add relevant info

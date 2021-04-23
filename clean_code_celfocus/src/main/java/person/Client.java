@@ -6,6 +6,7 @@ import buydetails.BuyInfoModel;
 import lombok.Data;
 import lombok.Getter;
 import org.springframework.util.CollectionUtils;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import vehicles.Car;
 import vehicles.Vehicle;
 import vehicles.VehicleFinance;
@@ -45,13 +46,25 @@ public class Client implements Person{
         this.vehicleFinance = new VehicleFinance();
         this.cash = 50;
     }
-
     protected  boolean hasRentedCars(){
         // TODO implement this method
         return false;
     }
-
     // TODO change this to proper class -> BuyOptions
+    public BuyInfo buyFavoriteCarDirty(List<Vehicle> carList ) throws Exception {
+        // dirty version
+        BuyInfo buyInfo = null;
+        for (Vehicle car : carList) { // possible NPE
+            if(car.canBuy(this)){
+                buyInfo = this.vehicleFinance.buyACar(this, car);
+            }
+        }
+        return buyInfo;
+    }
+
+    public BuyInfo buyFavoriteCarClean(List<Car> carList ) throws Exception {
+        throw new NotImplementedException();
+    }
 
     /**
      *  TODO please implement this method and change the necessary methods to leave the class as clean as possible
@@ -111,7 +124,7 @@ public class Client implements Person{
     }
 
 
-    // this whill return the customer age- ununcessary comment
+    // this whill return the customer age - ununcessary comment
     @Override
     public int getAge() {
         return this.age;
@@ -149,7 +162,11 @@ public class Client implements Person{
         return false;
     }
 
+    
+    // TODO
+    //  void sellCar(List<Vehicle> vehicleList, List<Person> clients){...}
 
+    // TODO
     public BuyInfo buyACar(CarSalesman salesmanList){
         if(salesmanList == null || salesmanList.vehicleListInStock().isEmpty()){
             return null;
@@ -176,16 +193,13 @@ public class Client implements Person{
      * @throws Exception
      */
     public boolean sellAVehicle(Car car,  Person p)throws Exception{
-
-
-
         return false;
     }
 
-    // TODO --> add a new test and check the possible problems - 25/09
+    // TODO --> add a new test and check the possible problems - 23/04
     @Override
     public boolean equals(Object person){
-        if( person == null || !(person instanceof Person)){
+        if(!(person instanceof Person)){
             return false;
         }
 
