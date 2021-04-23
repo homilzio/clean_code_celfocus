@@ -3,6 +3,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import person.*;
 import vehicles.Ford;
+import vehicles.Seat;
 import vehicles.Vehicle;
 
 import java.util.Arrays;
@@ -54,6 +55,8 @@ public class RentCarApp {
         Person majorPersonWithName = new Client("Black", "Maria", 18);
 
         Vehicle ford = new Ford("Blue");
+        Vehicle seat = new Seat("Blue");
+
         Vehicle fordBlack = new Ford("Black");
         Vehicle renault = new Ford("Pink", 4);
         try {
@@ -62,6 +65,8 @@ public class RentCarApp {
                 ((HamburguerSalesman) salesman).createNewSalesmanCorrect("Rui");
             }catch (Exception e){
                 LOGGER.error(e.getMessage()); // TODO padrão abafator
+            }finally {
+                LOGGER.warn(("Finally block"));
             }
 
             List<Vehicle> carList = new LinkedList<Vehicle>(Arrays.asList(ford, renault));

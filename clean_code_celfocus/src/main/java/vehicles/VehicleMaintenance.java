@@ -7,7 +7,7 @@ package vehicles;
   */
 public abstract class VehicleMaintenance implements Vehicle{
 
-    // ZOMBIE CODE - SHOULD be deleted
+    // ZOMBIE / zombie CODE - SHOULD be deleted
     /*
     public static void checkCheckHighCiclomatic() {
         for (; ; ) {
