@@ -1,6 +1,7 @@
 import junit.framework.TestCase;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,8 @@ public class AppTest extends TestCase {
     public static final String OK = "Ok";
     public static final int PORTUGAL_SIZE = 8;
     public static final int MIN_SIZE = 0;
+    public static final int ONE_SECOND = 10000;
+    public static final int MIN_STRING_SIZE = 3;
     private boolean isValid;
 
     public void testApp() {
@@ -18,13 +21,42 @@ public class AppTest extends TestCase {
     }
 
     public void testList() {
+
+    // TODO separate in 3 distincts tests and validate the execution time
         Optional<List<String>> listToStream;
         listToStream = Optional.of(Arrays.asList("AbA", "Joana", "Joaquim", "francis"));
+
+        List<String> strings = listToStream.get();
+        //TODO add timers to validate execution time
+
+        // hip 1 stream
+        List<String> listHipOne = strings.stream()
+                .filter(elem -> callExternAPI(elem))
+                .collect(Collectors.toList());
+
+        // hip 2 stream
+        List<String> listHipTwo = new ArrayList<>();
+        for( int i = 0; i< strings.size(); ++i){
+            if(callExternAPI(strings.get(i))){
+                listHipTwo.add(strings.get(i));
+            }
+        }
+
+        // hip 3 stream
+        List<String> listHipthree = strings.parallelStream()
+                .filter(elem -> callExternAPI(elem))
+                .collect(Collectors.toList());
+
+        // TODO trazer o threadGroup
+        // hip 3 stream
+        // ThreadGroup threadGroup
+        // List<String> listHipThere =
+
 
         boolean isValid = isValidList(listToStream);
         if (isValid) {
 
-            if (listToStream.get().size() > 1) {
+            if (strings.size() > 1) {
 
             }
 
@@ -33,6 +65,15 @@ public class AppTest extends TestCase {
         }
 
         assertTrue(isValid);
+    }
+
+    private boolean callExternAPI(String elem) {
+        try {
+            Thread.sleep(ONE_SECOND);
+        } catch (InterruptedException e) {
+            e.printStackTrace(); // TODO validate this later
+        }
+        return elem != null && elem.length()> MIN_STRING_SIZE;
     }
 
 
@@ -163,7 +204,7 @@ public class AppTest extends TestCase {
         double dividerResult = sumResult / divider;
 
         int result = sum > sum2 ? 1 : 2;
-       // int secondResult = sum > sum2 ? 1: sum2 > sum3? 2: 3;
+        // int secondResult = sum > sum2 ? 1: sum2 > sum3? 2: 3;
 
         return  dividerResult;
     }
