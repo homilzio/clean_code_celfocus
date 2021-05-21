@@ -8,13 +8,13 @@ public class TestClient extends TestCase {
         Person john = new Client("Blue", "John", 50);
         Person michael = new Client("Blue", "Michael", 50);
 
-        assertFalse(john.equals(michael));
+        assertTrue(!john.equals(michael));
     }
 
     public void testEqualsWithNullValues() {
         Person john = new Client("Blue", "John", 50);
         Person michael = new Client("Blue", "Michael", 50);
 
-        assertFalse(john.equals(null));
+        assertTrue(john!= null);
     }
 }
