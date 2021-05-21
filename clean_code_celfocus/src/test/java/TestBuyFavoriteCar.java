@@ -88,7 +88,7 @@ public class TestBuyFavoriteCar extends TestCase {
 
     }
 
-    @Test
+ /*   @Test
     public void testBuyFavoriteCarClean() {
         Car vehicle = new Ford(BLUE, NUMBER_OF_TIRES);
         List<Car> listToStream = Arrays.asList(vehicle);
@@ -104,6 +104,8 @@ public class TestBuyFavoriteCar extends TestCase {
         }
 
     }
+
+  */
 
 
 

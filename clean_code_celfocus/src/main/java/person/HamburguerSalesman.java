@@ -60,7 +60,8 @@ public class HamburguerSalesman  extends Salesman{
 
 
     public Salesman createNewSalesmanCorrect(String name) throws Exception {
-        if(name == null || name.contains("Rui") ) {
+        if(name == null || name.isEmpty() || name.contains("Rui") ) {
+            LOGGER.error("Invalid name: ", name);
             throw RentCarAppError.INVALID_PERSON_NAME;
         }
         return new HamburguerSalesman(name) ;
